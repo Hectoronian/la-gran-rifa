@@ -8,7 +8,6 @@ public class ShakeList {
     //attributes
     private ArrayList<String> array;
     private Random shaker = new Random();
-    private int shakeIndex = 0;
 
     //methods
     ShakeList() {
@@ -22,7 +21,7 @@ public class ShakeList {
 
     public String shakeArray() {
         if (array.size() >= 2) {
-            shakeIndex = shaker.nextInt(array.size());
+            int shakeIndex = shaker.nextInt(array.size());
             return array.get(shakeIndex);
         } else {
             return "No Enough Item in the List";

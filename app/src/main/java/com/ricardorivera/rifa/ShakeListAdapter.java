@@ -36,8 +36,7 @@ public class ShakeListAdapter extends RecyclerView.Adapter<ShakeListAdapter.Shak
                 .inflate(R.layout.layout_tickets, parent, false);
 //        ...
 
-        ShakeListViewHolder vh = new ShakeListViewHolder(v);
-        return vh;
+        return new ShakeListViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
