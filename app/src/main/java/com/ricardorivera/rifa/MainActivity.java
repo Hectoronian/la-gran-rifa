@@ -1,5 +1,10 @@
 package com.ricardorivera.rifa;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +17,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private ShakeList itemList;
     private RecyclerView recyclerView;
@@ -22,6 +28,29 @@ public class MainActivity extends AppCompatActivity {
     private ShakeDialogFragment shakeDialog;
     private ClearDialogFragment clearDialog;
     FragmentManager fragmentManager = getSupportFragmentManager();
+
+    // Sensor data
+    private float mAccel; // acceleration apart from gravity
+    private float mAccelCurrent; // current acceleration including gravity
+    private float mAccelLast; // last acceleration including gravity
+
+        public void onSensorChanged(SensorEvent se) {
+
+            float x = se.values[0];
+            float y = se.values[1];
+            float z = se.values[2];
+            mAccelLast = mAccelCurrent;
+            mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
+            float delta = mAccelCurrent - mAccelLast;
+            mAccel = mAccel * 0.9f + delta; // perform low-cut filter
+            Toast.makeText(this, "Shaken:", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            //Not used
+        }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,4 +121,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
