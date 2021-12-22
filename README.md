@@ -1,5 +1,5 @@
 # Un Gran Adiós
-Es un honor compartir con grandes colaboradoes, pero es un hasta luego, nuevos horizontes, proyectos y retos en el futuro.
+Es un honor compartir con grandes colaboradores, pero es un hasta luego, nuevos horizontes, proyectos y retos en el futuro.
 La Gran Rifa fue...
 # Un éxito! (2019-03-15 Fecha de entrega y presentación de proyecto)
 
